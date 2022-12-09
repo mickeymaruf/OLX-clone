@@ -4,7 +4,7 @@ import logo from '../../assets/OLX-Logo.png'
 const Navbar = () => {
     return (
         <header>
-            <nav className="navbar bg-base-100">
+            <nav className="navbar bg-base-200">
                 <div className="flex-1">
                     <a className="btn btn-ghost normal-case text-xl">
                         <img className="w-14" src={logo} alt="" />
