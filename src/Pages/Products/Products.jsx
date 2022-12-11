@@ -4,7 +4,7 @@ const Products = () => {
     return (
         <section className='bg-base-100 pt-10'>
             <div className='w-base mx-auto'>
-                <h2 className='text-2xl mb-6'>Fresh recommendations</h2>
+                <h2 className='text-2xl mb-4'>Fresh recommendations</h2>
                 <div className='grid grid-cols-4 gap-5'>
                     {
                         [...Array(20).keys()].map(i => <div className="card border rounded-md">
