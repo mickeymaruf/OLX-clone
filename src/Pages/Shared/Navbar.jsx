@@ -35,7 +35,7 @@ const Navbar = () => {
                                 <li className='p-3'>हिंदी</li>
                             </ul>
                         </div>
-                        <li><Link to="" className='font-medium underline'>Login</Link></li>
+                        <li><label htmlFor="login-modal" className='font-medium underline'>Login</label></li>
                         <li><button className='box'><FaPlus /> SELL</button></li>
                     </ul>
                 </div>
