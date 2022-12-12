@@ -10,7 +10,7 @@ const Navbar = () => {
             <nav className="navbar bg-base-200 px-8">
                 <div className='flex-1 mr-2'>
                     <Link to="/">
-                        <img className="w-14" src={logo} alt="" />
+                        <img className="w-20" src={logo} alt="" />
                     </Link>
                     <div className="dropdown ml-3 mr-4">
                         <input tabIndex={0} className="input input-bordered w-[270px] border-2 border-black rounded-sm" placeholder='Search city, area or locality' />

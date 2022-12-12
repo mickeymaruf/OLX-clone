@@ -17,5 +17,5 @@
 }
 
 .modal-box {
-    min-height: calc(100vh - 16px);
+    min-height: calc(100vh - 50px);
 }

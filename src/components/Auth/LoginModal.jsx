@@ -15,18 +15,31 @@ import { FaGoogle } from 'react-icons/fa';
 import { CgSmartphone } from 'react-icons/cg';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import EmailLogin from './EmailLogin';
+import { useAuth } from '../../contexts/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const LoginModal = () => {
-    const [loginState, setLoginState] = useState(true)
+    const [loginState, setLoginState] = useState(true);
+    const { googleLogin, login } = useAuth();
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(result => {
+                const user = result.user;
+            })
+            .catch(err => {
+                toast.error(err.message);
+                console.log(err);
+            })
+    }
     return (
         <div>
             <input type="checkbox" id="login-modal" className="modal-toggle" />
             <label htmlFor="login-modal" className="modal bg-black bg-opacity-80 cursor-pointer">
-                <label className="modal-box w-[400px] rounded-sm relative" htmlFor="">
+                <label className="modal-box w-[400px] rounded-md relative" htmlFor="">
                     <label htmlFor="login-modal" className="btn bg-transparent border-0 text-black hover:bg-transparent text-3xl btn-sm btn-circle absolute right-2 top-2">✕</label>
 
                     <button onClick={() => setLoginState(true)}>{loginState ? <AiOutlineArrowLeft className='hidden w-6 h-6' /> : <AiOutlineArrowLeft className='w-6 h-6' />}</button>
-                    <button className='absolute bottom-36 left-1/2 -translate-x-1/2 text-sm font-medium text-black border-b border-black pb-[2px]' onClick={() => setLoginState(!loginState)}>{loginState ? 'Login with Email' : ''}</button>
+                    <button className='absolute bottom-28 left-1/2 -translate-x-1/2 text-sm font-medium text-black border-b border-black pb-[2px]' onClick={() => setLoginState(!loginState)}>{loginState ? 'Login with Email' : ''}</button>
                     {
                         loginState
                             ? <>
@@ -61,7 +74,7 @@ const LoginModal = () => {
                                         <button className='w-full bg-white rounded text-black border-[3px] border-transparent hover:border-black font-medium capitalize hover:bg-white flex items-center py-2 pl-3 gap-3'><CgSmartphone className='w-5 h-5' /> Continue with Phone</button>
                                     </div>
                                     <div className='border-2 border-black mb-2 rounded-md'>
-                                        <button className='w-full bg-white rounded text-black border-[3px] border-transparent hover:border-black font-medium capitalize hover:bg-white flex items-center py-2 pl-3 gap-3'><FaGoogle className='w-5 h-5' /> Continue with Google</button>
+                                        <button onClick={handleGoogleLogin} className='w-full bg-white rounded text-black border-[3px] border-transparent hover:border-black font-medium capitalize hover:bg-white flex items-center py-2 pl-3 gap-3'><FaGoogle className='w-5 h-5' /> Continue with Google</button>
                                     </div>
                                     <p className='text-sm font-medium text-black my-5'>OR</p>
                                     <p className='text-xs text-accent absolute bottom-0 left-1/2 w-full mb-5 -translate-x-1/2'>
@@ -70,7 +83,7 @@ const LoginModal = () => {
                                     </p>
                                 </div>
                             </>
-                            : <EmailLogin />
+                            : <EmailLogin login={login} />
                     }
                 </label>
             </label>
