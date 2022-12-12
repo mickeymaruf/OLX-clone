@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/OLX-Logo.png'
 import { GoSearch } from 'react-icons/go'
 import { FaPlus } from 'react-icons/fa'
+import { useAuth } from '../../contexts/AuthProvider';
+import avatar from '../../assets/avatar.png';
 
-const Navbar = () => {
+const Navbar = ({ setLoginModal }) => {
+    const { user } = useAuth();
     return (
         <header className='sticky top-0 z-50'>
             <nav className="navbar bg-base-200 px-8">
@@ -35,8 +38,14 @@ const Navbar = () => {
                                 <li className='p-3'>हिंदी</li>
                             </ul>
                         </div>
-                        <li><label htmlFor="login-modal" className='font-medium underline'>Login</label></li>
-                        <li><button className='box'><FaPlus /> SELL</button></li>
+
+                        {
+                            user?.email
+                                ? <img className='w-8 mx-1 rounded-full' src={avatar} alt="" />
+                                : <li><label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium underline'>Login</label></li>
+                        }
+
+                        <Link to="/add-product"><li><button className='box'><FaPlus /> SELL</button></li></Link>
                     </ul>
                 </div>
             </nav>

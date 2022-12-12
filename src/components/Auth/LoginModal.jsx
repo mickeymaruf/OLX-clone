@@ -18,9 +18,9 @@ import EmailLogin from './EmailLogin';
 import { useAuth } from '../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
 
-const LoginModal = () => {
+const LoginModal = ({ setLoginModal }) => {
     const [loginState, setLoginState] = useState(true);
-    const { googleLogin, login } = useAuth();
+    const { googleLogin, login, createUser } = useAuth();
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
@@ -83,7 +83,7 @@ const LoginModal = () => {
                                     </p>
                                 </div>
                             </>
-                            : <EmailLogin login={login} />
+                            : <EmailLogin setLoginModal={setLoginModal} />
                     }
                 </label>
             </label>

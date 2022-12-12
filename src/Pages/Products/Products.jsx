@@ -1,25 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Product from './Product';
 
 const Products = () => {
+    const { data: products = [], isLoading } = useQuery({
+        queryKey: ['products'],
+        queryFn: () => fetch(`${import.meta.env.VITE_APP_API_URL}/products`)
+            .then(res => res.json())
+    })
+    console.log(products);
     return (
         <section className='bg-base-100 pt-10'>
             <div className='w-base mx-auto'>
                 <h2 className='text-2xl mb-4'>Fresh recommendations</h2>
                 <div className='grid grid-cols-4 gap-5'>
                     {
-                        [...Array(20).keys()].map(i => <div className="card border rounded-md">
-                            <figure><img className='w-40' src="https://apollo-singapore.akamaized.net/v1/files/0dgp6txu4fx2-IN/image;s=780x0;q=60" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">
-                                    ₹ 3,50,000
-                                </h2>
-                                <p>Honda Brio 2013-2016 V MT, 2014, CNG & Hybrids</p>
-                                <div className='text-xs'>
-                                    <span>BALITHA, VAPI</span>
-                                    <span>SEP 05</span>
-                                </div>
-                            </div>
-                        </div>)
+                        products?.map(product => <Product key={product._id} product={product} />)
                     }
                 </div>
                 <div className='py-20 flex justify-center'>
