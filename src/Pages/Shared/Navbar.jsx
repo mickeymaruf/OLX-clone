@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/OLX-Logo.png'
 import { GoSearch } from 'react-icons/go'
 import { FaPlus } from 'react-icons/fa'
+import { HiOutlineLocationMarker } from 'react-icons/hi'
+import { BiCurrentLocation } from 'react-icons/bi'
+import { MdOutlineExitToApp, MdOutlineLibraryBooks } from 'react-icons/md'
 import { useAuth } from '../../contexts/AuthProvider';
 import avatar from '../../assets/avatar.png';
 
 const Navbar = ({ setLoginModal }) => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
     return (
         <header className='sticky top-0 z-50'>
             <nav className="navbar bg-base-200 px-8">
@@ -19,8 +22,20 @@ const Navbar = ({ setLoginModal }) => {
                         <input tabIndex={0} className="input input-bordered w-[270px] border-2 border-black rounded-sm" placeholder='Search city, area or locality' />
                         <div tabIndex={0} className="dropdown-content card card-compact rounded-sm text-base p-2 shadow bg-base-100">
                             <div className="card-body">
-                                <h3 className="card-title">Card title!</h3>
-                                <p>you can use any element as a dropdown.</p>
+                                <div className='flex items-center gap-3 text-blue-500 border-b pb-3'>
+                                    <BiCurrentLocation className='w-10 h-10' />
+                                    <div>
+                                        <h3 className="text-base font-bold">Use current location!</h3>
+                                        <p>Location blocked.Check browser/phone settings.</p>
+                                    </div>
+                                </div>
+                                <p className='text-xs text-accent mt-2'>POPULAR LOCATIONS</p>
+                                <div className='mt-5 grid gap-6'>
+                                    <p className='flex items-center gap-3'><HiOutlineLocationMarker className="w-6 h-6 text-accent" /> Kerala</p>
+                                    <p className='flex items-center gap-3'><HiOutlineLocationMarker className="w-6 h-6 text-accent" /> Tamil Nadu</p>
+                                    <p className='flex items-center gap-3'><HiOutlineLocationMarker className="w-6 h-6 text-accent" /> Punjab</p>
+                                    <p className='flex items-center gap-3'><HiOutlineLocationMarker className="w-6 h-6 text-accent" /> Maharashtra</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -38,14 +53,44 @@ const Navbar = ({ setLoginModal }) => {
                                 <li className='p-3'>हिंदी</li>
                             </ul>
                         </div>
-
                         {
                             user?.email
-                                ? <img className='w-8 mx-1 rounded-full' src={avatar} alt="" />
+                                ? <>
+                                    <div className="dropdown dropdown-end">
+                                        <label tabIndex={0} className="inline-block mt-2">
+                                            {
+                                                user.photoURL
+                                                    ? <img className='w-9 mx-1 rounded-full' src={user.photoURL} alt="" />
+                                                    : <img className='w-9 mx-1 rounded-full' src={avatar} alt="" />
+                                            }
+                                        </label>
+                                        <ul tabIndex={0} className="dropdown-content menu shadow bg-base-100 rounded w-72">
+                                            <div className='flex items-center gap-3 p-5 pb-8'>
+                                                {
+                                                    user.photoURL
+                                                        ? <img className='w-14 rounded-full' src={user.photoURL} alt="" />
+                                                        : <img className='w-14 rounded-full' src={avatar} alt="" />
+                                                }
+                                                <div>
+                                                    <p className='text-sm'>Hello,</p>
+                                                    <h3 className='font-bold text-lg'>{user.displayName}</h3>
+                                                    <p className='text-sm underline'>View and edit profile</p>
+                                                </div>
+                                            </div>
+                                            <div className='border-t'>
+                                                <Link to="/myadds">
+                                                    <button className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><MdOutlineLibraryBooks className="w-6 h-6" />My ADS</button>
+                                                </Link>
+                                            </div>
+                                            <div className='border-t'>
+                                                <button onClick={logOut} className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><MdOutlineExitToApp className="w-6 h-6 rotate-180" /> Logout</button>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </>
                                 : <li><label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium underline'>Login</label></li>
                         }
-
-                        <Link to="/add-product"><li><button className='box'><FaPlus /> SELL</button></li></Link>
+                        <Link to="/add-product"><li><button className='sell-btn bg-white hover:bg-white ml-5 gap-2 font-medium'><FaPlus /> SELL</button></li></Link>
                     </ul>
                 </div>
             </nav>

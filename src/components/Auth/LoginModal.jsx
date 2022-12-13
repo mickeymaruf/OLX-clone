@@ -25,6 +25,7 @@ const LoginModal = ({ setLoginModal }) => {
         googleLogin()
             .then(result => {
                 const user = result.user;
+                setLoginModal(null);
             })
             .catch(err => {
                 toast.error(err.message);
@@ -77,10 +78,10 @@ const LoginModal = ({ setLoginModal }) => {
                                         <button onClick={handleGoogleLogin} className='w-full bg-white rounded text-black border-[3px] border-transparent hover:border-black font-medium capitalize hover:bg-white flex items-center py-2 pl-3 gap-3'><FaGoogle className='w-5 h-5' /> Continue with Google</button>
                                     </div>
                                     <p className='text-sm font-medium text-black my-5'>OR</p>
-                                    <p className='text-xs text-accent absolute bottom-0 left-1/2 w-full mb-5 -translate-x-1/2'>
+                                    <div className='text-xs text-accent absolute bottom-0 left-1/2 w-full mb-5 -translate-x-1/2'>
                                         <p>All your personal details are safe with us. </p><br />
                                         If you continue, you are accepting <p className='text-blue-700'> OLX Terms and Conditions and Privacy Policy</p>
-                                    </p>
+                                    </div>
                                 </div>
                             </>
                             : <EmailLogin setLoginModal={setLoginModal} />

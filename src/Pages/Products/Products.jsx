@@ -8,7 +8,6 @@ const Products = () => {
         queryFn: () => fetch(`${import.meta.env.VITE_APP_API_URL}/products`)
             .then(res => res.json())
     })
-    console.log(products);
     return (
         <section className='bg-base-100 pt-10'>
             <div className='w-base mx-auto'>

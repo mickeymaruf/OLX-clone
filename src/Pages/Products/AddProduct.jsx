@@ -152,7 +152,11 @@ const AddProduct = () => {
                             </label>
                             <div className='flex items-center gap-4'>
                                 <div>
-                                    <img className='w-20 mt-3 rounded-full' src={avatar} alt="" />
+                                    {
+                                        user?.photoURL
+                                            ? <img className='w-20 mt-3 rounded-full' src={user?.photoURL} alt="" />
+                                            : <img className='w-20 mt-3 rounded-full' src={avatar} alt="" />
+                                    }
                                 </div>
                                 <div className='flex-1 mb-2'>
                                     <label className="label pl-0">

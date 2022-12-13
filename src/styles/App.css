@@ -8,14 +8,26 @@
     color: #7c7c7c;
 }
 
-.swiper-button-prev{
+.swiper-button-prev {
     left: 0px;
 }
 
-.swiper-button-next{
+.swiper-button-next {
     right: 0px;
 }
 
 .modal-box {
     min-height: calc(100vh - 50px);
+}
+
+
+.sell-btn {
+    border-radius: 50em;
+    border: 6px solid transparent;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    border-top-color: #23E5DB;
+    border-bottom-color: #FFCE32;
+    border-left-color: #FFCE32;
+    border-right-color: #3A77FF;
 }

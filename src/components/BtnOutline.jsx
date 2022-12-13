@@ -2,8 +2,8 @@ import React from 'react';
 
 const BtnOutline = ({ children, className }) => {
     return (
-        <div className={`border-[5px] border-black rounded ${className}`}>
-            <button className='bg-black w-full py-2 text-white hover:bg-transparent hover:text-black'>{children}</button>
+        <div className={`w-fit border-2 border-black rounded-md ${className}`}>
+            <button className='bg-white rounded text-black border-[3px] border-transparent hover:border-black font-medium capitalize hover:bg-white flex items-center p-2 gap-3'>{children}</button>
         </div>
     );
 };
