@@ -90,7 +90,11 @@ const Navbar = ({ setLoginModal }) => {
                                 </>
                                 : <li><label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium underline'>Login</label></li>
                         }
-                        <Link to="/add-product"><li><button className='sell-btn bg-white hover:bg-white ml-5 gap-2 font-medium'><FaPlus /> SELL</button></li></Link>
+                        {
+                            user
+                                ? <Link to="/add-product"><li><button className='sell-btn bg-white hover:bg-white ml-5 gap-2 font-medium'><FaPlus /> SELL</button></li></Link>
+                                : <span><li><label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='sell-btn bg-white hover:bg-white ml-5 gap-2 font-medium'><FaPlus /> SELL</label></li></span>
+                        }
                     </ul>
                 </div>
             </nav>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { isUserExist, saveUserToDB } from '../../apis/users';
 import logo from '../../assets/OLX-Logo.png'
 import { useAuth } from '../../contexts/AuthProvider';
 import Btn from '../Btn';
@@ -10,30 +10,32 @@ const EmailLogin = ({ setLoginModal }) => {
     const [registerPage, setRegisterPage] = useState(false);
     const [error, setError] = useState(null);
     const [registrationError, setRegistrationError] = useState(null);
-    const navigate = useNavigate();
+    const [userIsExist, setUserIsExist] = useState(false);
     const handleLogin = (e) => {
         e.preventDefault();
         setError(null);
         const email = e.target.email.value;
-        // check either the user is exist or not in the db
-        fetch(`${import.meta.env.VITE_APP_API_URL}/isUserExist?email=${email}`)
-            .then(res => res.json())
+        // check if the user is exist or not
+        isUserExist(email)
             .then(data => {
                 if (!data.isExist) {
                     setError('userNotFound');
+                } else {
+                    setUserIsExist(true);
                 }
             })
-        return
-        const password = e.target.password.value;
-        login(email, password)
-            .then(result => {
-                const user = result.user;
-                e.target.reset();
-            })
-            .catch(err => {
-                setError(err.message);
-                console.log(err);
-            })
+        if (userIsExist) {
+            const password = e.target.password.value;
+            login(email, password)
+                .then(result => {
+                    const user = result.user;
+                    setLoginModal(null);
+                })
+                .catch(err => {
+                    setError(err.message);
+                    console.log(err);
+                })
+        }
     }
     const handleRegister = (e) => {
         e.preventDefault();
@@ -49,9 +51,16 @@ const EmailLogin = ({ setLoginModal }) => {
         }
         createUser(email, password)
             .then(result => {
+                const user = result.user;
                 updateUser(name).then(() => {
                     setLoginModal(null);
                     toast.success("Registration successful");
+                    saveUserToDB({ name: user.displayName, email: user.email })
+                        .then(userResult => { })
+                        .catch(err => {
+                            toast.error(err.message)
+                            console.log(err);
+                        })
                 })
             })
             .catch(err => {
@@ -88,7 +97,13 @@ const EmailLogin = ({ setLoginModal }) => {
                         <h2 className='text-xl font-bold'>Enter your email to login</h2>
                         <form onSubmit={handleLogin}>
                             <input type="email" name='email' className='py-3 w-full mt-8 border border-black rounded pl-3 outline-primary' placeholder='Email' required />
-
+                            {
+                                userIsExist &&
+                                <>
+                                    <input type="password" name='password' className='py-3 w-full mt-3 border border-black rounded pl-3 outline-primary' placeholder='Password' required />
+                                    {error && <p className='text-sm text-red-500 text-left mt-2'>{error}</p>}
+                                </>
+                            }
                             <p className='bg-yellow-50 text-sm mt-10 p-3 text-left text-black-50'>If you are a new user please select any other login option from previous page.</p>
                             <Btn className="mt-10">Next</Btn>
                         </form>

@@ -3,6 +3,7 @@ import Root from "../layouts/Root";
 import MyAdds from "../Pages/Dashboard/MyAdds";
 import Home from "../Pages/Home/Home";
 import AddProduct from "../Pages/Products/AddProduct";
+import RequireAuth from "./RequireAuth";
 
 const router = createBrowserRouter([
     {
@@ -15,11 +16,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add-product',
-                element: <AddProduct />,
+                element: <RequireAuth><AddProduct /></RequireAuth>,
             },
             {
                 path: '/myadds',
-                element: <MyAdds />,
+                element: <RequireAuth><MyAdds /></RequireAuth>,
             },
         ]
     }

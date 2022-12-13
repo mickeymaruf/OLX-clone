@@ -9,6 +9,7 @@ import { FaBullhorn } from 'react-icons/fa';
 import { MdOutlineOpenInNew } from 'react-icons/md';
 import { BiEditAlt } from 'react-icons/bi';
 import { HiOutlineXMark } from 'react-icons/hi2';
+import Spinner from '../../components/Spinner';
 
 const MyAdds = () => {
     const { user } = useAuth();
@@ -19,7 +20,7 @@ const MyAdds = () => {
     })
 
     if (isLoading) {
-        return <>Loading...</>
+        return <Spinner />
     }
 
     return (
@@ -37,10 +38,12 @@ const MyAdds = () => {
                             <thead>
                                 <tr>
                                     <th className='capitalize text-sm font-normal'>
-                                        <label className='flex items-center gap-2'>
+                                        <label>
                                             <input type="checkbox" className="checkbox" />
-                                            Date
                                         </label>
+                                    </th>
+                                    <th className='capitalize text-sm font-normal'>
+                                        Date
                                     </th>
                                     <th></th>
                                     <th className='capitalize text-sm font-normal'>Title</th>
@@ -53,11 +56,13 @@ const MyAdds = () => {
                                 {
                                     products.map(product => <tr key={product._id}>
                                         <th>
-                                            <label className='flex items-center gap-2'>
+                                            <label>
                                                 <input type="checkbox" className="checkbox" />
-                                                <p className='text-xs text-accent font-normal'>{moment(product.createdAt).format("MMM Do YY")}</p>
                                             </label>
                                         </th>
+                                        <td>
+                                            <p className='text-xs text-accent font-normal'>{moment(product.createdAt).format("MMM Do YY")}</p>
+                                        </td>
                                         <td>
                                             <div className="flex items-center space-x-3">
                                                 <div className="avatar">

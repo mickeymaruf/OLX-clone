@@ -17,6 +17,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import EmailLogin from './EmailLogin';
 import { useAuth } from '../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { isUserExist, saveUserToDB } from '../../apis/users';
 
 const LoginModal = ({ setLoginModal }) => {
     const [loginState, setLoginState] = useState(true);
@@ -25,6 +26,19 @@ const LoginModal = ({ setLoginModal }) => {
         googleLogin()
             .then(result => {
                 const user = result.user;
+                isUserExist(user?.email)
+                    .then(data => {
+                        if (!data.isExist) {
+                            saveUserToDB({ name: user.displayName, email: user.email })
+                                .then(userResult => {
+                                    toast.success("Registration successful");
+                                })
+                                .catch(err => {
+                                    toast.error(err.message)
+                                    console.log(err);
+                                })
+                        }
+                    })
                 setLoginModal(null);
             })
             .catch(err => {
