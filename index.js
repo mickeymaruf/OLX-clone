@@ -40,6 +40,12 @@ async function run() {
             const result = await productsCollection.find(query).sort({ createdAt: -1 }).toArray();
             res.send(result);
         })
+        // users
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne(user);
+            res.send(result);
+        })
         // is user exist
         app.get('/isUserExist', async (req, res) => {
             const query = { email: req.query.email };
