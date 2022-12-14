@@ -19,12 +19,18 @@ async function run() {
         const db = client.db("olx-clone");
         const productsCollection = db.collection("products");
         const usersCollection = db.collection("users");
+        const ordersCollection = db.collection("orders");
 
         // products
         app.get('/products', async (req, res) => {
-            const query = {};
+            const query = { status: { $ne: "sold" } };
             const products = await productsCollection.find(query).sort({ createdAt: -1 }).toArray();
             res.send(products);
+        })
+        app.get('/products/:id', async (req, res) => {
+            const query = { _id: ObjectId(req.params.id) };
+            const product = await productsCollection.findOne(query);
+            res.send(product);
         })
         app.post('/products', async (req, res) => {
             const product = req.body;
@@ -39,6 +45,38 @@ async function run() {
             const query = { 'seller.email': email }
             const result = await productsCollection.find(query).sort({ createdAt: -1 }).toArray();
             res.send(result);
+        })
+        // orders
+        app.get('/orders', async (req, res) => {
+            const email = req.query.email;
+            const query = { 'buyer.email': email }
+            const result = await ordersCollection.find(query).sort({ createdAt: -1 }).toArray();
+            res.send(result);
+        })
+        app.put('/orders', async (req, res) => {
+            const order = req.body;
+            const productId = order.productId;
+            const orderAlreadyExist = await ordersCollection.findOne({ productId });
+            if (orderAlreadyExist) {
+                return res.send({});
+            }
+            const createdAt = moment().format();
+            order.createdAt = createdAt;
+            const orderUpdateDoc = {
+                $set: order
+            }
+            const orderResult = await ordersCollection.updateOne({ productId }, orderUpdateDoc, { upsert: true });
+            // 
+            if (orderResult.upsertedCount > 0) {
+                const query = { _id: ObjectId(productId) };
+                const updateDoc = {
+                    $set: {
+                        status: 'sold'
+                    }
+                }
+                const result = await productsCollection.updateOne(query, updateDoc);
+            }
+            res.send(orderResult);
         })
         // users
         app.post('/users', async (req, res) => {
