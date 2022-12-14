@@ -12,7 +12,7 @@ const Products = () => {
         <section className='bg-base-100 pt-10'>
             <div className='w-base mx-auto'>
                 <h2 className='text-2xl mb-4'>Fresh recommendations</h2>
-                <div className='grid grid-cols-4 gap-5'>
+                <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                     {
                         products?.map(product => <Product key={product._id} product={product} />)
                     }

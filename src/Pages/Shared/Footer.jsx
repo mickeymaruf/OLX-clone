@@ -55,7 +55,7 @@ const Footer = () => {
                         <AiOutlineTwitter className='border-[2px] border-accent w-5 h-5 rounded-full p-[2px]' />
                         <ImPlay3 className='border-[2px] border-accent w-5 h-5 rounded-full p-[2px]' />
                     </div>
-                    <div className='flex gap-2 mt-auto'>
+                    <div className='flex flex-wrap gap-2 mt-auto'>
                         <img className='w-20' src={playstore} alt="" />
                         <img className='w-20' src={appstore} alt="" />
                     </div>

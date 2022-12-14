@@ -13,12 +13,12 @@ const Navbar = ({ setLoginModal }) => {
     const { user, logOut } = useAuth();
     return (
         <header className='sticky top-0 z-50'>
-            <nav className="navbar bg-base-200 px-8">
+            <nav className="navbar bg-base-200 py-0 px-8">
                 <div className='flex-1 mr-2'>
                     <Link to="/">
-                        <img className="w-20" src={logo} alt="" />
+                        <img className="w-24" src={logo} alt="" />
                     </Link>
-                    <div className="dropdown ml-3 mr-4">
+                    <div className="hidden lg:block dropdown ml-3 mr-4">
                         <input tabIndex={0} className="input input-bordered w-[270px] border-2 border-black rounded-sm" placeholder='Search city, area or locality' />
                         <div tabIndex={0} className="dropdown-content card card-compact rounded-sm text-base p-2 shadow bg-base-100">
                             <div className="card-body">
@@ -39,7 +39,7 @@ const Navbar = ({ setLoginModal }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full flex">
+                    <div className="w-full hidden md:flex">
                         <input type="text" placeholder="Find Cars, Mobile Phones and more..." className="input input-bordered w-full border-2 border-black rounded-sm rounded-r-sm" />
                         <button className='btn text-white rounded-l-sm'><GoSearch className="w-6 h-6" /></button>
                     </div>
@@ -80,6 +80,7 @@ const Navbar = ({ setLoginModal }) => {
                                             <div className='border-t'>
                                                 <Link to="/myadds">
                                                     <button className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><MdOutlineLibraryBooks className="w-6 h-6" />My ADS</button>
+                                                    <button className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><MdOutlineLibraryBooks className="w-6 h-6" />My ADS</button>
                                                 </Link>
                                             </div>
                                             <div className='border-t'>
@@ -88,7 +89,7 @@ const Navbar = ({ setLoginModal }) => {
                                         </ul>
                                     </div>
                                 </>
-                                : <li><label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium underline'>Login</label></li>
+                                : <label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium border-b-2 border-black ml-1'>Login</label>
                         }
                         {
                             user
