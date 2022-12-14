@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
 import MyAdds from "../Pages/Dashboard/MyAdds";
+import MyPurchase from "../Pages/Dashboard/MyPurchase";
 import Home from "../Pages/Home/Home";
 import AddProduct from "../Pages/Products/AddProduct";
 import ProductDetail from "../Pages/Products/ProductDetail";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: '/myadds',
                 element: <RequireAuth><MyAdds /></RequireAuth>,
+            },
+            {
+                path: '/mypurchase',
+                element: <RequireAuth><MyPurchase /></RequireAuth>,
             },
         ]
     }

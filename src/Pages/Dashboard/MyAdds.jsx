@@ -10,6 +10,7 @@ import { MdOutlineOpenInNew } from 'react-icons/md';
 import { BiEditAlt } from 'react-icons/bi';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import Spinner from '../../components/Spinner';
+import { Link } from 'react-router-dom';
 
 const MyAdds = () => {
     const { user } = useAuth();
@@ -27,11 +28,11 @@ const MyAdds = () => {
         <div>
             {
                 products.length < 1
-                    ? <div className='w-2/6 mx-auto text-center pt-20 pb-12'>
+                    ? <div className='md:w-2/6 mx-auto text-center pt-20 pb-12'>
                         <img className='w-48 h-48 mx-auto' src={noPublications} alt="" />
                         <p className='font-bold text-accent mt-4'>You haven't listed anything yet</p>
                         <p className='text-sm mt-4 text-accent'>Let go of what you <br /> don't use anymore</p>
-                        <BtnOutline className="w-fit mx-auto mt-3">start selling</BtnOutline>
+                        <Link to="/add-product"><BtnOutline className="w-fit mx-auto mt-3">start selling</BtnOutline></Link>
                     </div>
                     : <div className="overflow-x-auto w-full">
                         <table className="table w-full">
@@ -48,7 +49,7 @@ const MyAdds = () => {
                                     <th></th>
                                     <th className='capitalize text-sm font-normal'>Title</th>
                                     <th className='capitalize text-sm font-normal'>Price</th>
-                                    <th className='capitalize text-sm font-normal'>Chats</th>
+                                    <th className='capitalize text-sm font-normal'>Status</th>
                                     <th className='capitalize text-sm font-normal'></th>
                                 </tr>
                             </thead>
@@ -85,12 +86,12 @@ const MyAdds = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <div>₹ {product.price}</div>
+                                            <p className='font-bold'>₹ {product.price}</p>
                                         </td>
                                         <td>
-                                            <button className='flex px-3 py-[5px] text-sm rounded text-white w-fit gap-2 items-center bg-blue-500 font-medium'>
-                                                <SlEnvolope className="w-5 h-5" /> 5
-                                            </button>
+                                            <p className='flex px-3 py-1 text-sm rounded text-white w-fit gap-2 items-center bg-gray-500 font-medium'>
+                                                {product.status === "sold" ? "sold" : "unsold"}
+                                            </p>
                                         </td>
                                         <th>
                                             <button className='flex px-3 py-[5px] text-sm rounded text-white w-fit gap-2 items-center bg-blue-500 font-medium'>

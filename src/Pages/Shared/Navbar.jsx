@@ -4,22 +4,26 @@ import logo from '../../assets/OLX-Logo.png'
 import { GoSearch } from 'react-icons/go'
 import { FaPlus } from 'react-icons/fa'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
-import { BiCurrentLocation } from 'react-icons/bi'
+import { BiCurrentLocation, BiPurchaseTag } from 'react-icons/bi'
 import { MdOutlineExitToApp, MdOutlineLibraryBooks } from 'react-icons/md'
 import { useAuth } from '../../contexts/AuthProvider';
 import avatar from '../../assets/avatar.png';
+import { IoIosArrowDown } from 'react-icons/io';
 
 const Navbar = ({ setLoginModal }) => {
     const { user, logOut } = useAuth();
     return (
         <header className='sticky top-0 z-50'>
-            <nav className="navbar bg-base-200 py-0 px-8">
+            <nav className="navbar bg-base-200 py-1 px-5 md:px-8">
                 <div className='flex-1 mr-2'>
-                    <Link to="/">
-                        <img className="w-24" src={logo} alt="" />
+                    <Link className='mr-3' to="/">
+                        <img className="w-14 md:w-20" src={logo} alt="" />
                     </Link>
                     <div className="hidden lg:block dropdown ml-3 mr-4">
-                        <input tabIndex={0} className="input input-bordered w-[270px] border-2 border-black rounded-sm" placeholder='Search city, area or locality' />
+                        <div className='relative'>
+                            <input tabIndex={0} className="input input-bordered w-[270px] border-2 border-black rounded-sm" placeholder='Search city, area or locality' />
+                            <IoIosArrowDown className="w-8 h-8 absolute top-1/2 right-2 -translate-y-1/2" />
+                        </div>
                         <div tabIndex={0} className="dropdown-content card card-compact rounded-sm text-base p-2 shadow bg-base-100">
                             <div className="card-body">
                                 <div className='flex items-center gap-3 text-blue-500 border-b pb-3'>
@@ -47,7 +51,7 @@ const Navbar = ({ setLoginModal }) => {
                 <div>
                     <ul className="menu menu-horizontal p-0 items-center">
                         <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="m-1 p-3 font-medium">ENGLISH</label>
+                            <label tabIndex={0} className="m-1 p-3 font-medium flex items-center gap-1">ENGLISH <IoIosArrowDown className="w-8 h-8" /></label>
                             <ul tabIndex={0} className="mt-8 dropdown-content p-2 bg-base-100 rounded-sm w-64 drop-shadow-lg">
                                 <li className='p-3 mb-2'>English</li>
                                 <li className='p-3'>हिंदी</li>
@@ -80,7 +84,9 @@ const Navbar = ({ setLoginModal }) => {
                                             <div className='border-t'>
                                                 <Link to="/myadds">
                                                     <button className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><MdOutlineLibraryBooks className="w-6 h-6" />My ADS</button>
-                                                    <button className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><MdOutlineLibraryBooks className="w-6 h-6" />My ADS</button>
+                                                </Link>
+                                                <Link to="/mypurchase">
+                                                    <button className='flex items-center gap-3 w-full p-3 text-lg hover:bg-blue-100'><BiPurchaseTag className="w-6 h-6" />My Purchase</button>
                                                 </Link>
                                             </div>
                                             <div className='border-t'>

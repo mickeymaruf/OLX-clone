@@ -46,7 +46,7 @@ const AddProduct = () => {
                 })
                     .then(res => res.json())
                     .then(result => {
-                        toast.success(data.title + ' is added successfully');
+                        toast.success(data.title.slice(0, 10) + ' is added successfully');
                         navigate('/');
                     })
                     .catch(err => {
@@ -112,7 +112,7 @@ const AddProduct = () => {
                             <label className="label pl-0 mb-1">
                                 <span className="label-text font-bold text-xl">UPLOAD PHOTOS</span>
                             </label>
-                            <div className='h-32 w-32 flex items-center text-center border-2 border-black' {...getRootProps()}>
+                            <div className='h-32 w-32 hover:opacity-60 cursor-pointer flex items-center text-center border-2 border-black' {...getRootProps()}>
                                 <input className='w-fit' {...getInputProps()} />
                                 {
                                     isDragActive ?
@@ -162,7 +162,7 @@ const AddProduct = () => {
                                     <label className="label pl-0">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" className="w-full input input-bordered rounded-md border-gray-400" defaultValue={user?.displayName} />
+                                    <input type="text" className="w-full input input-bordered rounded-md border-gray-400" defaultValue={user?.displayName} disabled />
                                 </div>
                             </div>
                         </div>
