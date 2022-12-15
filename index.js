@@ -23,7 +23,11 @@ async function run() {
 
         // products
         app.get('/products', async (req, res) => {
+            const search = req.query.search;
             const query = { status: { $ne: "sold" } };
+            if (search) {
+                query.title = { $regex: search, $options: 'i' };
+            }
             const products = await productsCollection.find(query).sort({ createdAt: -1 }).toArray();
             res.send(products);
         })
