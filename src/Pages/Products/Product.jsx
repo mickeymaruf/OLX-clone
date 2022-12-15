@@ -7,7 +7,7 @@ const Product = ({ product }) => {
     const { _id, title, image, price, location, createdAt } = product;
     return (
         <Link to={`products/${_id}`}>
-            <div className="card border rounded-md relative">
+            <div className="card border rounded-md relative bg-base-100">
                 <figure><img className='w-40 h-40 pt-2 object-contain' src={image} alt={title} /></figure>
                 <div className="card-body gap-1 p-4">
                     <h2 className="card-title font-bold">

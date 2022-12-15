@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import heroBg from '../../assets/hero_bg.png'
+import heroBgGif from '../../assets/hero_bg.gif'
 import phoneImg from '../../assets/phone-app.webp'
 import playstore from '../../assets/playstore_2x.webp'
 import appstore from '../../assets/appstore_2x.webp'
@@ -48,9 +49,16 @@ const Home = () => {
                     </form>
                 </ul>
             </div>
-            <div className='h-[135px] relative'>
+            <div className='h-[135px] relative hidden lg:block'>
                 <img className='h-full object-cover' src={heroBg} alt="" />
                 <button className='absolute top-1/2 -translate-y-1/2 left-1/2 translate-x-1/2 py-1 px-5 rounded-md bg-white border-4 border-white text-black font-bold capitalize hover:bg-primary hover:text-white hover:border-white'>Sell Car</button>
+            </div>
+            <div className='h-[200px] relative lg:hidden px-10 pb-16 p-5 bg-[#30ACBF]'>
+                <img className='h-full w-full object-contain' src={heroBgGif} alt="" />
+                <div className='absolute bottom-3 left-1/2 -translate-x-1/2 flex w-full justify-center'>
+                    <button className='py-1 px-5 rounded-md bg-white border-4 border-white text-black font-bold capitalize hover:bg-primary hover:text-white hover:border-white mr-3'>Buy Car</button>
+                    <button className='py-1 px-5 rounded-md bg-white border-4 border-white text-black font-bold capitalize hover:bg-primary hover:text-white hover:border-white'>Sell Car</button>
+                </div>
             </div>
             <Products />
             <div className='flex flex-wrap justify-center items-center gap-5 bg-base-200'>
