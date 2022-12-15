@@ -36,33 +36,35 @@ const MyPurchase = () => {
                         <p className='text-sm mt-4 text-accent'>Let go of what you <br /> don't use anymore</p>
                         <Link to="/"><BtnOutline className="w-fit mx-auto mt-3">start buying</BtnOutline></Link>
                     </div>
-                    : <div className="overflow-x-auto w-full pb-20">
+                    : <>
                         <h1 className='text-4xl font-thin my-5 text-center'>My Purchases</h1>
-                        <table className="table w-full">
-                            <thead>
-                                <tr>
-                                    <th className='capitalize text-sm font-normal'>
-                                        <label>
-                                            <input type="checkbox" className="checkbox" />
-                                        </label>
-                                    </th>
-                                    <th className='capitalize text-sm font-normal'>
-                                        Date
-                                    </th>
-                                    <th></th>
-                                    <th className='capitalize text-sm font-normal'>Title</th>
-                                    <th className='capitalize text-sm font-normal'>Price</th>
-                                    <th className='capitalize text-sm font-normal'>Your Info</th>
-                                    <th className='capitalize text-sm font-normal'></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    orders.map(order => <OrderTable key={order._id} order={order} refetch={refetch}></OrderTable>)
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                        <div className="overflow-x-auto w-full pb-20">
+                            <table className="table w-full">
+                                <thead>
+                                    <tr>
+                                        <th className='capitalize text-sm font-normal'>
+                                            <label>
+                                                <input type="checkbox" className="checkbox" />
+                                            </label>
+                                        </th>
+                                        <th className='capitalize text-sm font-normal'>
+                                            Date
+                                        </th>
+                                        <th></th>
+                                        <th className='capitalize text-sm font-normal'>Title</th>
+                                        <th className='capitalize text-sm font-normal'>Price</th>
+                                        <th className='capitalize text-sm font-normal'>Your Info</th>
+                                        <th className='capitalize text-sm font-normal'></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        orders.map(order => <OrderTable key={order._id} order={order} refetch={refetch}></OrderTable>)
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
             }
         </div>
     );

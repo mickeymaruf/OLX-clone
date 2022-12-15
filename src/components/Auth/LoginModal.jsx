@@ -51,7 +51,7 @@ const LoginModal = ({ setLoginModal }) => {
         <div>
             <input type="checkbox" id="login-modal" className="modal-toggle" />
             <label htmlFor="login-modal" className="modal bg-black bg-opacity-80 cursor-pointer">
-                <label className="modal-box w-[400px] rounded-md relative" htmlFor="">
+                <label className="modal-box w-[400px] rounded-md" htmlFor="">
                     <label htmlFor="login-modal" className="btn bg-transparent border-0 text-black hover:bg-transparent text-3xl btn-sm btn-circle absolute right-2 top-2">✕</label>
 
                     <button onClick={() => setLoginState(true)}>{loginState ? <AiOutlineArrowLeft className='hidden w-6 h-6' /> : <AiOutlineArrowLeft className='w-6 h-6' />}</button>
