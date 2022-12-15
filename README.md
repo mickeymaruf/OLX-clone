@@ -2,7 +2,9 @@
 
 ### Live: [https://olx-clone-5cb8a.web.app](https://olx-clone-5cb8a.web.app)
 
-<!-- ## Features -->
+
+Testing email: maruf.h4x@gmail.com <br />
+Testing password: 123123
 
 ## Setup & Installation
 
@@ -36,4 +38,20 @@
 
 If you also want to see the server side code you can visit the `server` branch
 
-<img src="./src/assets/readme/server-branch.PNG" alt="Markdown Monster icon" style="width:250px; float: left; margin-right: 10px; border: 2px solid white" />
+<img src="./src/assets/readme/server-branch.PNG" alt="Markdown Monster icon" style="width:250px" />
+
+<br />
+
+## About the app
+**Technologies:** React (vite), Node.js, Express.js, MongoDB (with atlas hosting), Firebase(auth, hosting)
+
+**Server** is hosted on Vercel.
+
+## Features
+
+ - User registration & login implemented
+ - User can list an item for sale.
+ - Added (unsold) items will be listed on the home page.
+ - If users click on their profile icon, they will see 2 pages. One **My Adds** and another **My Purchase**. Users can see their own products listed for sale and their purchases.
+ - **(EXTRA)** Users can cancel their orders by simply clicking the cancel order button below the product title.
+ - Fully responsive
