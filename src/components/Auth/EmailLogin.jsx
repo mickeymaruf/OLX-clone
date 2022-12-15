@@ -77,7 +77,7 @@ const EmailLogin = ({ setLoginModal }) => {
     }
     return (
         <div className='text-center relative'>
-            <img className='w-20 mx-auto' src={logo} alt="" />
+            <img className='w-14 mx-auto mb-6' src={logo} alt="" />
             {
                 error === 'userNotFound' &&
                 <div className={`absolute bottom-[205px] text-sm text-red-500 ${registerPage ? 'hidden' : ''}`}>Email not registered! <button onClick={() => setRegisterPage(true)} className='text-black underline'>Want to Register?</button></div>
