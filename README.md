@@ -6,33 +6,34 @@
 
 ## Setup & Installation
 
-#### **Setup**
+1. Clone down this repository and go inside the folder. You will need `node` and `npm` installed globally on your machine.  
 
-Create a `.env.local` file in root directory
+2. Create a `.env.local` file in root directory. This file holds sensitive settings, which should not be pushed to github. *But I'm leaving it for testing purpose*:
+    ```shell
+    VITE_APP_API_URL=https://olx-server.vercel.app
+    VITE_APP_apiKey=AIzaSyC3R5u8g6fEmVv2mR6_awn-rXgd63wPVJY
+    VITE_APP_authDomain=olx-clone-5cb8a.firebaseapp.com
+    VITE_APP_projectId=olx-clone-5cb8a
+    VITE_APP_storageBucket=olx-clone-5cb8a.appspot.com
+    VITE_APP_messagingSenderId=414231183839
+    VITE_APP_appId=1:414231183839:web:f60905807b01f6d084c46a
+    VITE_APP_IMGBB_API_KEY=8d155210d9e1923baca8b95c1565017d
+    ```
 
-This file holds sensitive settings, which should not be pushed to git. Example content suitable for development/testing could be:
-```shell
-VITE_APP_API_URL=
-VITE_APP_apiKey=
-VITE_APP_authDomain=
-VITE_APP_storageBucket=
-VITE_APP_messagingSenderId=
-VITE_APP_appId=
-VITE_APP_IMGBB_API_KEY=
-```
+3. Installation:
 
-#### **Installation:**  
+    `npm install`
 
-Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
+    To Start Server:
 
-Installation:
+    `npm run dev`  
 
-`npm install`
+    To Visit App:
 
-To Start Server:
+    `localhost:5173`
 
-`npm run dev`  
+## Server Side (Optional)
 
-To Visit App:
+If you also want to see the server side code you can visit the `server` branch
 
-`localhost:5173`
+<img src="./src/assets/readme/server-branch.PNG" alt="Markdown Monster icon" style="width:250px; float: left; margin-right: 10px; border: 2px solid white" />
