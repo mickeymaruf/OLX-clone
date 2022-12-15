@@ -7,9 +7,11 @@ import { useAuth } from '../../contexts/AuthProvider';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import RoundSpinner from '../../components/RoundSpinner';
 
 const AddProduct = () => {
     const { user } = useAuth();
+    const [loading, isLoading] = useState(false);
     const navigate = useNavigate();
     const [getImage, setGetImage] = useState("");
     const [imageErr, setiImageErr] = useState(null);
@@ -22,6 +24,7 @@ const AddProduct = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
+        isLoading(true);
         if (!getImage) {
             setiImageErr("Image is required");
             return;
@@ -48,9 +51,11 @@ const AddProduct = () => {
                     .then(result => {
                         toast.success(data.title.slice(0, 10) + ' is added successfully');
                         navigate('/');
+                        isLoading(false);
                     })
                     .catch(err => {
                         console.log(err);
+                        isLoading(false);
                     });
             })
             .catch(err => {
@@ -117,7 +122,7 @@ const AddProduct = () => {
                                 {
                                     isDragActive ?
                                         <p>Drop here ...</p> :
-                                        <p className='flex flex-col items-center'>
+                                        <p className='flex flex-col items-center text-sm'>
                                             {getImage ? getImage?.name : <>
                                                 <TbCameraPlus className='w-8 h-8' />
                                                 Add Photo
@@ -170,7 +175,11 @@ const AddProduct = () => {
                 </div>
                 <div className='border-t border-slate-400 p-8 md:pr-0'>
                     <div className="form-control">
-                        <Btn className="w-fit">Post Now</Btn>
+                        {
+                            loading
+                                ? <button className='btn-disabled w-fit p-3 px-4 rounded font-bold flex items-center gap-1'>Loading... <div className='w-6 h-6 border-4 border-dashed rounded-full animate-spin border-gray-400'></div></button>
+                                : <Btn className="w-fit">Post Now</Btn>
+                        }
                     </div>
                 </div>
             </form>
