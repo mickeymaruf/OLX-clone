@@ -1,5 +1,7 @@
 # OLX-clone-server
 
+### Server: [https://olx-server.vercel.app](https://olx-server.vercel.app)
+
 ## Setup & Installation
 
 1. Clone down the server repository by
