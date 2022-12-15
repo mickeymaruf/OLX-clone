@@ -106,7 +106,7 @@ const Navbar = ({ setLoginModal }) => {
                                         </ul>
                                     </div>
                                 </>
-                                : <label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium border-b-2 border-black ml-1'>Login</label>
+                                : <label htmlFor="login-modal" onMouseOver={() => setLoginModal(true)} className='font-medium border-b-2 border-black ml-1 cursor-pointer'>Login</label>
                         }
                         {
                             user

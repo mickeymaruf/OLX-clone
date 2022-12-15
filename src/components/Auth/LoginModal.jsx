@@ -21,8 +21,9 @@ import { isUserExist, saveUserToDB } from '../../apis/users';
 
 const LoginModal = ({ setLoginModal }) => {
     const [loginState, setLoginState] = useState(true);
-    const { googleLogin, login, createUser } = useAuth();
+    const { googleLogin } = useAuth();
     const handleGoogleLogin = () => {
+
         googleLogin()
             .then(result => {
                 const user = result.user;
@@ -54,7 +55,7 @@ const LoginModal = ({ setLoginModal }) => {
                     <label htmlFor="login-modal" className="btn bg-transparent border-0 text-black hover:bg-transparent text-3xl btn-sm btn-circle absolute right-2 top-2">✕</label>
 
                     <button onClick={() => setLoginState(true)}>{loginState ? <AiOutlineArrowLeft className='hidden w-6 h-6' /> : <AiOutlineArrowLeft className='w-6 h-6' />}</button>
-                    <button className='absolute bottom-28 left-1/2 -translate-x-1/2 text-sm font-medium text-black border-b border-black pb-[2px]' onClick={() => setLoginState(!loginState)}>{loginState ? 'Login with Email' : ''}</button>
+                    <button className='relative -bottom-[425px] left-1/2 -translate-x-1/2 text-sm font-medium text-black border-b border-black pb-[2px]' onClick={() => setLoginState(!loginState)}>{loginState ? 'Login with Email' : ''}</button>
                     {
                         loginState
                             ? <>
@@ -65,22 +66,22 @@ const LoginModal = ({ setLoginModal }) => {
                                     modules={[Navigation, Pagination]}
                                     loop={true}
                                 >
-                                    <SwiperSlide className='pb-14'>
-                                        <div>
-                                            <img className='w-24 mx-auto pb-10' src={loginEntryPointPost} alt="" />
-                                            <p className='text-center font-medium'>Help us become one of the safest places <br /> to buy and sell</p>
+                                    <SwiperSlide>
+                                        <div className='mb-5'>
+                                            <img className='w-24 mx-auto pb-4' src={loginEntryPointPost} alt="" />
+                                            <p className='text-center font-medium pb-10'>Help us become one of the safest places <br /> to buy and sell</p>
                                         </div>
                                     </SwiperSlide>
-                                    <SwiperSlide className='pb-14'>
-                                        <div>
-                                            <img className='w-24 mx-auto pb-10' src={loginEntryPointChat} alt="" />
-                                            <p className='text-center font-medium'>Close deals from the comfort of your <br /> home.</p>
+                                    <SwiperSlide>
+                                        <div className='mb-5'>
+                                            <img className='w-24 mx-auto pb-4' src={loginEntryPointFavorite} alt="" />
+                                            <p className='text-center font-medium pb-10'>Close deals from the comfort of your <br /> home.</p>
                                         </div>
                                     </SwiperSlide>
-                                    <SwiperSlide className='pb-14'>
-                                        <div>
-                                            <img className='w-24 mx-auto pb-10' src={loginEntryPointFavorite} alt="" />
-                                            <p className='text-center font-medium'>Keep all your favourites in one place.</p>
+                                    <SwiperSlide>
+                                        <div className='mb-5'>
+                                            <img className='w-24 mx-auto pb-4' src={loginEntryPointChat} alt="" />
+                                            <p className='text-center font-medium pb-10'>Keep all your favourites in one place.</p>
                                         </div>
                                     </SwiperSlide>
                                 </Swiper>
@@ -92,7 +93,7 @@ const LoginModal = ({ setLoginModal }) => {
                                         <button onClick={handleGoogleLogin} className='w-full bg-white rounded text-black border-[3px] border-transparent hover:border-black font-medium capitalize hover:bg-white flex items-center py-2 pl-3 gap-3'><FaGoogle className='w-5 h-5' /> Continue with Google</button>
                                     </div>
                                     <p className='text-sm font-medium text-black my-5'>OR</p>
-                                    <div className='text-xs text-accent absolute bottom-0 left-1/2 w-full mb-5 -translate-x-1/2'>
+                                    <div className='text-xs text-accent w-full mb-5 relative -bottom-12 pb-5'>
                                         <p>All your personal details are safe with us. </p><br />
                                         If you continue, you are accepting <p className='text-blue-700'> OLX Terms and Conditions and Privacy Policy</p>
                                     </div>

@@ -4,10 +4,20 @@ import phoneImg from '../../assets/phone-app.webp'
 import playstore from '../../assets/playstore_2x.webp'
 import appstore from '../../assets/appstore_2x.webp'
 import Products from '../Products/Products';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useSearch } from '../../contexts/SearchProvider';
+import { GoSearch } from 'react-icons/go';
 
 const Home = () => {
+    const navigate = useNavigate();
+    const { setSearchText } = useSearch();
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate("/")
+        setSearchText(e.target.search.value);
+        e.target.reset();
+    }
     const [arrowUp, setArrowUp] = useState(false);
     const categories = <>
         <li><Link className='hover:text-primary'>Cars</Link></li>
@@ -32,6 +42,10 @@ const Home = () => {
                 </div>
                 <ul className="collapse-content flex flex-wrap gap-5 bg-base-100 w-fit text-sm">
                     {categories}
+                    <form onSubmit={handleSearch} className="w-full flex md:hidden">
+                        <input type="text" name="search" placeholder="Find Cars, Mobile Phones and more..." className="input input-bordered w-full border-2 border-black rounded-sm rounded-r-sm" />
+                        <button className='btn text-white rounded-l-sm'><GoSearch className="w-6 h-6" /></button>
+                    </form>
                 </ul>
             </div>
             <div className='h-[135px] relative'>

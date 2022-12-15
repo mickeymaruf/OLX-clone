@@ -4,6 +4,7 @@ import { isUserExist, saveUserToDB } from '../../apis/users';
 import logo from '../../assets/OLX-Logo.png'
 import { useAuth } from '../../contexts/AuthProvider';
 import Btn from '../Btn';
+import RoundSpinner from '../RoundSpinner';
 
 const EmailLogin = ({ setLoginModal }) => {
     const { login, createUser, updateUser } = useAuth();
@@ -11,8 +12,10 @@ const EmailLogin = ({ setLoginModal }) => {
     const [error, setError] = useState(null);
     const [registrationError, setRegistrationError] = useState(null);
     const [userIsExist, setUserIsExist] = useState(false);
+    const [loader, setLoader] = useState(false);
     const handleLogin = (e) => {
         e.preventDefault();
+        setLoader(true);
         setError(null);
         const email = e.target.email.value;
         // check if the user is exist or not
@@ -20,8 +23,10 @@ const EmailLogin = ({ setLoginModal }) => {
             .then(data => {
                 if (!data.isExist) {
                     setError('userNotFound');
+                    setLoader(false);
                 } else {
                     setUserIsExist(true);
+                    setLoader(false);
                 }
             })
         if (userIsExist) {
@@ -30,10 +35,12 @@ const EmailLogin = ({ setLoginModal }) => {
                 .then(result => {
                     const user = result.user;
                     setLoginModal(null);
+                    setLoader(false);
                 })
                 .catch(err => {
                     setError(err.message);
                     console.log(err);
+                    setLoader(false);
                 })
         }
     }
@@ -105,7 +112,7 @@ const EmailLogin = ({ setLoginModal }) => {
                                 </>
                             }
                             <p className='bg-yellow-50 text-sm mt-10 p-3 text-left text-black-50'>If you are a new user please select any other login option from previous page.</p>
-                            <Btn className="mt-10">Next</Btn>
+                            <Btn className="mt-10"><span className='flex justify-center gap-2'>{loader ? <>Loading... <RoundSpinner className="fill-white" /></> : 'Next'}</span> </Btn>
                         </form>
                         <p className='text-xs mx-5 mt-1 text-accent'>Your email is never shared with external parties nor do we use it to spam you in any way.</p>
                     </>
