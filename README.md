@@ -49,9 +49,10 @@ If you also want to see the server side code you can visit the `server` branch
 
 ## Features
 
- - User registration & login implemented
+ - Implemented user registration & login 
  - User can list an item for sale.
  - Added (unsold) items will be listed on the home page.
- - If users click on their profile icon, they will see 2 pages. One **My Adds** and another **My Purchase**. Users can see their own products listed for sale and their purchases.
+ - If users click on their profile icon, they will see 2 nav links. One **My Adds** and another **My Purchase**. On My Adds page Users can see their own products listed for sale and their purchases on My Purchase page.
  - **(EXTRA)** Users can cancel their orders by simply clicking the cancel order button below the product title.
+ - Implemented search functionality for searching products by title
  - Fully responsive

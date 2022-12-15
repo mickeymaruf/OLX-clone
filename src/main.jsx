@@ -8,16 +8,19 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import SearchProvider from './contexts/SearchProvider'
 
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-      <Toaster />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <SearchProvider>
+          <App />
+          <Toaster />
+        </SearchProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 )

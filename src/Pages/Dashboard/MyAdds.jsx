@@ -34,7 +34,8 @@ const MyAdds = () => {
                         <p className='text-sm mt-4 text-accent'>Let go of what you <br /> don't use anymore</p>
                         <Link to="/add-product"><BtnOutline className="w-fit mx-auto mt-3">start selling</BtnOutline></Link>
                     </div>
-                    : <div className="overflow-x-auto w-full">
+                    : <div className="overflow-x-auto w-full pb-20">
+                        <h1 className='text-4xl font-thin my-5 text-center'>My Adds</h1>
                         <table className="table w-full">
                             <thead>
                                 <tr>
