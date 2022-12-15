@@ -13,7 +13,7 @@ const Product = ({ product }) => {
                     <h2 className="card-title font-bold">
                         ₹ {price}
                     </h2>
-                    <p className='m-0 p-0 mb-1 text-accent'>{title.length > 30 ? title.slice(0, 30) + '...' : title}</p>
+                    <p className='m-0 p-0 mb-1 text-accent text-sm'>{title.length > 30 ? title.slice(0, 30) + '...' : title}</p>
                     <div className='text-xs flex justify-between text-accent'>
                         <span>{location.length > 16 ? location.slice(0, 16) + '...' : location}</span>
                         <span>{moment(createdAt).format('ll')}</span>

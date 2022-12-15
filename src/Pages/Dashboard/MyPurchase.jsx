@@ -95,7 +95,7 @@ const OrderTable = ({ order, refetch }) => {
                         if (data.deletedCount > 0) {
                             Swal.fire(
                                 'Order canceled!',
-                                `${product.title.length > 30 ? product.title.slice(0, 30) + '...' : product.title} has been canceled.`,
+                                "Your order has been canceled.",
                                 'success'
                             )
                             refetch();

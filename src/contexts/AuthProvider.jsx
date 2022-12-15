@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
     }
     const updateUser = (name) => {
         return updateProfile(auth.currentUser, {
-            displayName: name
+            displayName: name,
         })
     }
 

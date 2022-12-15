@@ -7,7 +7,6 @@ import { useAuth } from '../../contexts/AuthProvider';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import RoundSpinner from '../../components/RoundSpinner';
 
 const AddProduct = () => {
     const { user } = useAuth();
@@ -178,7 +177,7 @@ const AddProduct = () => {
                         {
                             loading
                                 ? <button className='btn-disabled w-fit p-3 px-4 rounded font-bold flex items-center gap-1'>Loading... <div className='w-6 h-6 border-4 border-dashed rounded-full animate-spin border-gray-400'></div></button>
-                                : <Btn className="w-fit">Post Now</Btn>
+                                : <Btn className="w-fit px-2">Post Now</Btn>
                         }
                     </div>
                 </div>
