@@ -37,6 +37,7 @@ async function run() {
             // adding date & time
             const createdAt = moment().format();
             product.createdAt = createdAt;
+            product.status = "unsold";
             const result = await productsCollection.insertOne(product);
             res.send(result);
         })
@@ -77,6 +78,23 @@ async function run() {
                 const result = await productsCollection.updateOne(query, updateDoc);
             }
             res.send(orderResult);
+        })
+        app.delete('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const productId = req.query.productId;
+            const query = { _id: ObjectId(id), productId };
+            const result = await ordersCollection.deleteOne(query);
+            // 
+            if (result.deletedCount > 0) {
+                const productQuery = { _id: ObjectId(productId) };
+                const updateDoc = {
+                    $set: {
+                        status: 'unsold'
+                    }
+                }
+                const result = await productsCollection.updateOne(productQuery, updateDoc);
+            }
+            res.send(result);
         })
         // users
         app.post('/users', async (req, res) => {
