@@ -67,11 +67,13 @@ const ProductDetail = () => {
                     <h1 className='text-xl'>Seller description</h1>
                     <h2 className='mt-1 font-bold'>{seller.name}</h2>
                 </div>
-                <div className='bg-white border rounded p-5'>
-                    <div onClick={handlePurchase}>
-                        <Btn className="w-full"><span className='flex items-center justify-center gap-2'>{loader ? <>Purchasing...<RoundSpinner className="fill-white" /> </> : 'Purchase'}</span></Btn>
+                {user?.email && (
+                    <div className='bg-white border rounded p-5'>
+                        <div onClick={handlePurchase}>
+                            <Btn className="w-full"><span className='flex items-center justify-center gap-2'>{loader ? <>Purchasing...<RoundSpinner className="fill-white" /> </> : 'Purchase'}</span></Btn>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );
